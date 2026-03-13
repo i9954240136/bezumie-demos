@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bezumie.tech — Демо шаблонов</title>
+    <meta name="description" content="6 стилей лендингов. Выбери свой.">
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           DEMO SITE STYLES (UI переключателя)
+           ═══════════════════════════════════════════════════════════════ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        .demo-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #2a2a3a;
+            padding: 20px 0;
+            z-index: 10000;
+        }
+
+        .demo-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .demo-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a855f7, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .demo-nav a {
+            color: #a0a0b0;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .demo-nav a:hover {
+            color: #ffffff;
+        }
+
+        /* STYLE SWITCHER */
+        .style-switcher {
+            background: #1a1a2e;
+            padding: 30px 20px;
+            margin-top: 80px;
+            border-bottom: 1px solid #2a2a3a;
+        }
+
+        .style-switcher-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .style-switcher h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .style-switcher p {
+            color: #a0a0b0;
+            margin-bottom: 25px;
+        }
+
+        .style-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .style-btn {
+            padding: 12px 24px;
+            background: #2a2a3a;
+            border: 2px solid #3a3a4a;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .style-btn:hover {
+            background: #3a3a4a;
+            border-color: #4a4a5a;
+            transform: translateY(-2px);
+        }
+
+        .style-btn.active {
+            background: linear-gradient(135deg, #a855f7, #14b8a6);
+            border-color: transparent;
+        }
+
+        .preview-info {
+            background: #2a2a3a;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        .preview-info strong {
+            color: #14b8a6;
+        }
+
+        /* PREVIEW CONTAINER */
+        .preview-container {
+            min-height: calc(100vh - 300px);
+        }
+
+        /* CTA SECTION */
+        .demo-cta {
+            background: #1a1a2e;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #2a2a3a;
+        }
+
+        .demo-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .demo-cta p {
+            color: #a0a0b0;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .demo-cta-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #a855f7, #14b8a6);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .demo-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        /* FOOTER */
+        .demo-footer {
+            background: #0f0f1a;
+            padding: 30px 20px;
+            text-align: center;
+            color: #6a6a7a;
+            border-top: 1px solid #2a2a3a;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .demo-header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .demo-nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .demo-nav a {
+                margin-left: 0;
+            }
+
+            .style-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .style-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .demo-cta h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ШАБЛОН 1: MINIMALISM
+           ═══════════════════════════════════════════════════════════════ */
+        [data-style="minimalism"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --accent-primary: #000000;
+            --border-color: #e5e5e5;
+        }
+
+        [data-style="minimalism"] .preview-container {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+
+        [data-style="minimalism"] .section-title {
+            color: #000000;
+        }
+
+        [data-style="minimalism"] .btn {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ШАБЛОН 2: CYBERPUNK
+           ═══════════════════════════════════════════════════════════════ */
+        [data-style="cyberpunk"] {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-primary: #a855f7;
+            --accent-secondary: #14b8a6;
+            --border-color: #2a2a3a;
+        }
+
+        [data-style="cyberpunk"] .preview-container {
+            background: #0a0a0f;
+            color: #ffffff;
+        }
+
+        [data-style="cyberpunk"] .section-title {
+            background: linear-gradient(135deg, #a855f7, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        [data-style="cyberpunk"] .btn {
+            background: linear-gradient(135deg, #a855f7, #14b8a6);
+            color: #ffffff;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ШАБЛОН 3: GLASSMORPHISM
+           ═══════════════════════════════════════════════════════════════ */
+        [data-style="glassmorphism"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #2d2d44;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
+            --accent-primary: #7c84f3;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        [data-style="glassmorphism"] .preview-container {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%);
+            color: #e8e8e8;
+        }
+
+        [data-style="glassmorphism"] .section-title {
+            color: #e8e8e8;
+        }
+
+        [data-style="glassmorphism"] .btn {
+            background: rgba(124, 132, 243, 0.8);
+            color: #ffffff;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ШАБЛОН 4: BRUTALISM
+           ═══════════════════════════════════════════════════════════════ */
+        [data-style="brutalism"] {
+            --bg-primary: #f0f0eb;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent-primary: #ffde00;
+            --border-color: #1a1a1a;
+        }
+
+        [data-style="brutalism"] .preview-container {
+            background: #f0f0eb;
+            color: #1a1a1a;
+        }
+
+        [data-style="brutalism"] .section-title {
+            color: #1a1a1a;
+        }
+
+        [data-style="brutalism"] .btn {
+            background: #ffde00;
+            color: #1a1a1a;
+            border: 4px solid #1a1a1a;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ШАБЛОН 5: RETRO
+           ═══════════════════════════════════════════════════════════════ */
+        [data-style="retro"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #22c55e;
+            --text-secondary: #16a34a;
+            --accent-primary: #22c55e;
+            --border-color: #22c55e;
+        }
+
+        [data-style="retro"] .preview-container {
+            background: #0a0a0a;
+            color: #22c55e;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        [data-style="retro"] .section-title {
+            color: #22c55e;
+        }
+
+        [data-style="retro"] .section-title::before {
+            content: '# ';
+        }
+
+        [data-style="retro"] .btn {
+            background: transparent;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ШАБЛОН 6: BENTO
+           ═══════════════════════════════════════════════════════════════ */
+        [data-style="bento"] {
+            --bg-primary: #f5f5f7;
+            --bg-secondary: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-primary: #0071e3;
+            --border-color: #d2d2d7;
+        }
+
+        [data-style="bento"] .preview-container {
+            background: #f5f5f7;
+            color: #1d1d1f;
+        }
+
+        [data-style="bento"] .section-title {
+            color: #1d1d1f;
+        }
+
+        [data-style="bento"] .btn {
+            background: #0071e3;
+            color: #ffffff;
+            border-radius: 50px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PREVIEW CONTENT STYLES (общие для всех шаблонов)
+           ═══════════════════════════════════════════════════════════════ */
+        .preview-section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-preview {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-preview h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-preview p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- DEMO HEADER -->
+    <header class="demo-header">
+        <div class="demo-header-content">
+            <div class="demo-logo">bezumie.tech</div>
+            <nav class="demo-nav">
+                <a href="#demo">Демо</a>
+                <a href="#styles">Стили</a>
+                <a href="#order">Заказать</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- STYLE SWITCHER -->
+    <section class="style-switcher" id="styles">
+        <div class="style-switcher-content">
+            <h2>Выберите стиль</h2>
+            <p>6 уникальных дизайнов. Переключайтесь в реальном времени.</p>
+            
+            <div class="style-buttons">
+                <button class="style-btn active" data-style="minimalism">Minimalism</button>
+                <button class="style-btn" data-style="cyberpunk">Cyberpunk</button>
+                <button class="style-btn" data-style="glassmorphism">Glassmorphism</button>
+                <button class="style-btn" data-style="brutalism">Brutalism</button>
+                <button class="style-btn" data-style="retro">Retro</button>
+                <button class="style-btn" data-style="bento">Bento</button>
+            </div>
+
+            <div class="preview-info">
+                Текущий стиль: <strong id="currentStyle">Minimalism</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREVIEW CONTAINER -->
+    <div class="preview-container" id="demo" data-style="minimalism">
+        <!-- HERO -->
+        <section class="hero-preview">
+            <h1>Качественные услуги для вашего бизнеса</h1>
+            <p>Работаем с 2020 года. Гарантия качества. Быстрые сроки.</p>
+            <a href="#order" class="btn">Заказать услугу →</a>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="preview-section">
+            <h2 class="section-title">Преимущества</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏱</div>
+                    <h3>Быстро</h3>
+                    <p>Сроки от 1 дня</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Недорого</h3>
+                    <p>Честные цены</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Качественно</h3>
+                    <p>Гарантия результата</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Надёжно</h3>
+                    <p>Работаем по договору</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="preview-section">
+            <h2 class="section-title">Услуги</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Услуга 1</h3>
+                    <p>Описание услуги. Что входит, сроки, особенности.</p>
+                    <p style="margin-top: 15px; font-weight: 700;">от 5 000 ₽</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Услуга 2</h3>
+                    <p>Описание услуги. Что входит, сроки, особенности.</p>
+                    <p style="margin-top: 15px; font-weight: 700;">от 7 000 ₽</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Услуга 3</h3>
+                    <p>Описание услуги. Что входит, сроки, особенности.</p>
+                    <p style="margin-top: 15px; font-weight: 700;">от 10 000 ₽</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CTA -->
+    <section class="demo-cta" id="order">
+        <h2>Готовы заказать?</h2>
+        <p>Сайт за 3 дня. 10 000 ₽. Форма заявок + хостинг навсегда.</p>
+        <a href="https://t.me/chevengur92" target="_blank" class="demo-cta-btn">Обсудить проект →</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="demo-footer">
+        <p>© 2026 bezumie.tech. Все шаблоны доступны для заказа.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Style switcher logic
+        const styleBtns = document.querySelectorAll('.style-btn');
+        const previewContainer = document.getElementById('demo');
+        const currentStyleEl = document.getElementById('currentStyle');
+
+        // Load saved style from localStorage
+        const savedStyle = localStorage.getItem('bezumie-style') || 'minimalism';
+        setStyle(savedStyle);
+
+        // Button click handlers
+        styleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const style = btn.getAttribute('data-style');
+                setStyle(style);
+                localStorage.setItem('bezumie-style', style);
+            });
+        });
+
+        function setStyle(style) {
+            // Update container
+            previewContainer.setAttribute('data-style', style);
+
+            // Update buttons
+            styleBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-style') === style) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update text
+            const styleNames = {
+                'minimalism': 'Minimalism',
+                'cyberpunk': 'Cyberpunk',
+                'glassmorphism': 'Glassmorphism',
+                'brutalism': 'Brutalism',
+                'retro': 'Retro',
+                'bento': 'Bento'
+            };
+            currentStyleEl.textContent = styleNames[style];
+
+            // Update content based on style
+            updateContent(style);
+        }
+
+        function updateContent(style) {
+            const heroTitle = document.querySelector('.hero-preview h1');
+            const heroSubtitle = document.querySelector('.hero-preview p');
+
+            const content = {
+                'minimalism': {
+                    title: 'Качественные услуги для вашего бизнеса',
+                    subtitle: 'Работаем с 2020 года. Гарантия качества. Быстрые сроки.'
+                },
+                'cyberpunk': {
+                    title: 'Инновационные решения для вашего бизнеса',
+                    subtitle: 'Современные технологии. Надёжное качество. Результат гарантирован.'
+                },
+                'glassmorphism': {
+                    title: 'Современные решения для вашего бизнеса',
+                    subtitle: 'Элегантность. Прозрачность. Доверие.'
+                },
+                'brutalism': {
+                    title: 'Работаем. Честно. Надёжно.',
+                    subtitle: 'Без воды. Без компромиссов. Только результат.'
+                },
+                'retro': {
+                    title: '> ДОБРО ПОЖАЛОВАТЬ_',
+                    subtitle: 'Система инициализирована. Готовы к работе. Надёжность. Качество. Результат.'
+                },
+                'bento': {
+                    title: 'Современные решения для вашего бизнеса',
+                    subtitle: 'Качество. Надёжность. Результат.'
+                }
+            };
+
+            heroTitle.textContent = content[style].title;
+            heroSubtitle.textContent = content[style].subtitle;
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
