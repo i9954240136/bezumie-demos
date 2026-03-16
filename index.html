@@ -3808,7 +3808,27 @@
                 });
             });
         });
- 
+
+        // Force scroll for all template buttons
+document.querySelectorAll('.template-wrapper a[href="#contact"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Find parent template
+        const template = this.closest('.template-wrapper');
+        if (!template) return;
+        
+        // Find contact section within this template
+        const contact = template.querySelector('#contact');
+        if (contact) {
+            contact.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+    });
+});
+  
     </script>
 </body>
 </html>
