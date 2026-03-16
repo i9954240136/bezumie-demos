@@ -3811,3 +3811,30 @@
     </script>
 </body>
 </html>
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+            // Find the visible template first
+            const activeTemplate = document.querySelector('.template-wrapper.active');
+            const targetInTemplate = activeTemplate ? activeTemplate.querySelector(href) : null;
+            
+            if (targetInTemplate) {
+                targetInTemplate.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            } else {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    });
+});
